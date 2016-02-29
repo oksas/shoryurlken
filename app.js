@@ -3,20 +3,32 @@
 const express = require("express");
 const app = express();
 
-const shortenUrl = require("./shortenUrl");
+const cleanUrl = require("./api/cleanUrl");
+const testUrl = require("./api/testUrl");
+const shortenUrl = require("./api/shortenUrl");
 
-const url = "http://butt.archi";
+const port = process.env.PORT || 2020;
 
-shortenUrl(url, function(entry) {
-    console.log("GOT THE ENTRY!!!!");
-    console.log(entry);
-    console.log(entry.word);
+app.get("/shorten/", function(req, res) {
+    
+    const url = cleanUrl(req.query.site);
+    
+    testUrl(url, function(err) {
+        if (err) {
+            return res.send(`ERROR: ${err}`);
+        }
+        
+        shortenUrl(url, function(entry) {
+            console.log("GOT THE ENTRY!");
+            console.log(entry);
+            
+            res.send(entry.word);
+        });
+        
+    });
 });
 
-/*
-    take url in
-    make request to that url; if status code is ok, do the usual stuff
-    otherwise, tell the user there's something wrong with it
-
-*/
+app.listen(port, function() {
+    console.log(`App listening on port ${port}`);
+});
 

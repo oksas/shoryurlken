@@ -1,8 +1,8 @@
 "use strict";
 
 const getWord = require("./getWord");
-const ShortUrl = require("./models/shortUrlModel");
-const db = require("./api/dbAPI");
+const ShortUrl = require("../models/shortUrlModel");
+const db = require("./dbAPI");
 
 function shortenUrl(url, callback) {
     

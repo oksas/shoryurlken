@@ -9,7 +9,10 @@ module.exports = {
     
     findByUrl: function(url, callback) {
         ShortUrl.findOne({ "url": url }, function(err, shortUrl) {
-            // handle the error!
+            if (err) {
+                return callback(err);
+            }
+            
             if (shortUrl) {
                 callback(null, shortUrl);
             } else {
@@ -21,7 +24,10 @@ module.exports = {
     
     findByWord: function(word, callback) {
         ShortUrl.findOne({ "word": word }, function(err, shortUrl) {
-            // handle the error!
+            if (err) {
+                return callback(err);
+            }
+            
             if (shortUrl) {
                 callback(null, shortUrl);
             } else {
@@ -32,8 +38,10 @@ module.exports = {
     
     saveEntry: function(entry, callback) {
         entry.save(function(err, entry) {
-            // handle the error!
-            console.log("saved the entry to database !!!!!!");
+            if (err) {
+                return callback(err);
+            }
+            
             callback(null, entry);
         });
     }

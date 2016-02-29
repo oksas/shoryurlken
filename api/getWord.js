@@ -1,11 +1,7 @@
 "use strict";
 
 const request = require("request");
-const db = require("./api/dbAPI");
-
-// Need more modular way to define query params with the url
-// And should probably move url and query params to a separate file, to separate
-// the implementation from whatever API is actually being used? Am I already doing that?
+const db = require("./dbAPI");
 
 module.exports = function getWord(callback) {
     const url = "http://api.wordnik.com/v4/words.json/randomWord";
@@ -15,15 +11,17 @@ module.exports = function getWord(callback) {
     let word = "";
     
     request(url + query + key, function(err, res, body) {
-        // handle the error!
+        if (err) {
+            return callback(err);
+        }
         
         word = JSON.parse(body).word.toLowerCase();
         console.log(`just got word ${word}`);
         
-        // if word already used
-        // return getWord(callback)
         db.findByWord(word, function(err, entry) {
-            // handle the error!
+            if (err) {
+                return callback(err);
+            }
             
             if (entry) {
                 console.log(`word ${word} already exists in db; trying again`);
@@ -33,10 +31,6 @@ module.exports = function getWord(callback) {
             callback(null, word);
             
         });
-        // ^ will return the word, or not
-        // so if the word exists...
-        // return, and call getWord(callback)
-        // else, do callback(null, word)
     });
     
 };

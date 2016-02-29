@@ -7,7 +7,7 @@ const db = require("./api/dbAPI");
 function shortenUrl(url, callback) {
     
     db.findByUrl(url, function(err, entry) {
-        
+        // handle the error!
         if (entry) {
             console.log("that url already exists");
             callback(entry);

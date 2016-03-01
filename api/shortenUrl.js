@@ -7,18 +7,26 @@ const db = require("./dbAPI");
 function shortenUrl(url, callback) {
     
     db.findByUrl(url, function(err, entry) {
-        // handle the error!
+        if (err) {
+            return callback(err);
+        }
+        
         if (entry) {
             console.log("that url already exists");
-            callback(entry);
+            callback(null, entry);
         } else {
             console.log("that url does NOT already exist");
             getWord(function(err, word) {
-                if (err) console.error(err);
+                if (err) {
+                    return callback(err);
+                }
                 var entry = new ShortUrl({"url": url, "word": word});
                 db.saveEntry(entry, function(err, savedEntry) {
-                    // handle the error!
-                    callback(savedEntry);
+                    if (err) {
+                        return callback(err);
+                    }
+                    
+                    callback(null, savedEntry);
                 });
                 
             });

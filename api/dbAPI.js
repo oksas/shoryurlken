@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const ShortUrl = require("../models/shortUrlModel");
 
-mongoose.connect("mongodb://localhost/url-shortener");
+mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/url-shortener");
 
 module.exports = {
     

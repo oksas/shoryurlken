@@ -10,6 +10,17 @@ body {
     color: hsl(0, 0%, 10%);
 }
 
+.repo-link {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    opacity: 0.5;
+}
+
+.repo-link:hover {
+    opacity: 1;
+}
+
 .container {
     padding: 2rem;
     max-width: 40rem;

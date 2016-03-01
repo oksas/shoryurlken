@@ -18,7 +18,6 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", function(req, res) {
-    console.log(req.headers);
     res.render("index", {error: ""});
 });
 
@@ -27,7 +26,7 @@ app.get("/:word", function(req, res) {
    
     findUrl(word, function(err, entry) {
         if (err) {
-            return res.render("index", {error: err, url: ""});
+            return res.render("index", {error: err});
         }
     
     res.redirect(entry.url);
@@ -40,15 +39,15 @@ app.post("/shorten", urlencodedParser, function(req, res) {
     
     testUrl(url, function(err) {
         if (err) {
-            return res.render("index", {error: err, url: ""});
+            return res.render("index", {error: err});
         }
         
         shortenUrl(url, function(err, entry) {
            if (err) {
-               return res.render("index", {error: err, url: ""});
+               return res.render("index", {error: err});
            }
             
-            res.render("index", {error: "", url: `${req.headers.host}/${entry.word`})
+            res.render("result", {url: `http://${req.headers.host}/${entry.word}`})
         });
         
     });

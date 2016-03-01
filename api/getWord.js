@@ -16,7 +16,6 @@ module.exports = function getWord(callback) {
         }
         
         word = JSON.parse(body).word.toLowerCase();
-        console.log(`just got word ${word}`);
         
         db.findByWord(word, function(err, entry) {
             if (err) {
@@ -24,7 +23,6 @@ module.exports = function getWord(callback) {
             }
             
             if (entry) {
-                console.log(`word ${word} already exists in db; trying again`);
                 return getWord(callback);
             }
             

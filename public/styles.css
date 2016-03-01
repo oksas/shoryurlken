@@ -1,18 +1,27 @@
+::-moz-selection { background: hsl(340, 90%, 60%); color: white; }
+::selection { background: hsl(340, 90%, 60%); color: white; }
+
 body {
     font-family: "Raleway", sans-serif;
     display: flex;
     justify-content: center;
     padding: 0;
     margin: 0;
+    color: hsl(0, 0%, 10%);
 }
 
 .container {
     padding: 2rem;
     max-width: 40rem;
+    text-align: center;
 }
 
 .container h1 {
+    display: inline-block;
+    font-size: 3rem;
     text-align: center;
+    border-bottom: 0.5rem solid hsl(0, 0%, 10%);
+    margin-bottom: 2rem;
 }
 
 .danger {
@@ -23,22 +32,22 @@ body {
 
 input {
     box-sizing: border-box;
-	display: block;
+	display: inline-block;
 	margin: 2rem auto;
 	height: 1.4rem;
-	width: 16rem;
+	width: 24rem;
 	border: none;
 	border-bottom: 1px solid #aaa;
 	letter-spacing: 1px;
 }
 
 input[type="text"]:focus {
-	border-bottom-color: #000;
+	border-bottom-color: hsl(0, 0%, 10%);
 }
 
 input[type="submit"] {
     position: relative;
-    margin: 2rem auto;
+    margin-left: 2rem;
     width: 8rem;
 }
 
@@ -55,5 +64,12 @@ a:hover {
     text-decoration: none;
 }
 
-::-moz-selection { background: hsl(340, 90%, 60%); color: white; }
-::selection { background: hsl(340, 90%, 60%); color: white; }
+code {
+    box-sizing: border-box;
+    display: block;
+    color: hsl(340, 90%, 60%);
+	background: hsl(0, 5%, 85%);
+	padding: 0.5rem;
+	border-radius: 2px;
+	margin-bottom: 4rem;
+}

@@ -10,7 +10,6 @@ function findUrl(word, callback) {
         }
         
         if (entry) {
-            console.log("found the word in the db; returning the entry");
             callback(null, entry);
         } else {
             callback("word not found :(");

@@ -12,10 +12,8 @@ function shortenUrl(url, callback) {
         }
         
         if (entry) {
-            console.log("that url already exists");
             callback(null, entry);
         } else {
-            console.log("that url does NOT already exist");
             getWord(function(err, word) {
                 if (err) {
                     return callback(err);

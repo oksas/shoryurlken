@@ -12,14 +12,11 @@
     <body>
         <div class="container">
             <h1>URL Shortener</h1>
-            <p>Input a URL and I'll shorten it for you.</p>
-            <form action="/shorten" method="POST">
-                <% if (error) { %>
-                    <p class="danger"><%= error %></p>
-                <% } %>
-                <input type="text" name="url" placeholder="http://some-cool-website.com">
-                <input type="submit" value="Submit">
-            </form>
+            <p>Here you go!</p>
+            
+                <code><%= url %></code>
+            
+            <a href="/">submit another</a>
         </div>
     </body>
 </html>

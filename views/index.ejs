@@ -7,14 +7,23 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="/styles.css" />
         
-        <title><%= title %></title>
+        <title>URL Shortener</title>
     </head>
     <body>
         <div class="container">
-            Hi there, this is the index.
+            <h1>URL Shortener</h1>
+            <p>Input a URL and I'll shorten it for you.</p>
             <form action="/shorten" method="POST">
-                URL to shorten: <input type="text" name="url">
+                <% if (error) { %>
+                    <p class="danger"><%= error %></p>
+                <% } %>
+                <input type="text" name="url" placeholder="http://some-cool-website.com">
                 <input type="submit" value="Submit">
+                <% if (error) { %>
+                    <div>
+                        <p>Your shortened url is: <%= url %></p>
+                    </div>
+                <% } %>
             </form>
         </div>
     </body>

@@ -15,6 +15,38 @@ body {
     text-align: center;
 }
 
+.danger {
+    background-color: hsl(340, 90%, 90%);
+    color: hsl(340, 90%, 60%);
+    border-radius: 2px;
+}
+
+input {
+    box-sizing: border-box;
+	display: block;
+	margin: 2rem auto;
+	height: 1.4rem;
+	width: 16rem;
+	border: none;
+	border-bottom: 1px solid #aaa;
+	letter-spacing: 1px;
+}
+
+input[type="text"]:focus {
+	border-bottom-color: #000;
+}
+
+input[type="submit"] {
+    position: relative;
+    margin: 2rem auto;
+    width: 8rem;
+}
+
+input[type="submit"]:active {
+    top: 1px;
+    border-bottom: none;
+}
+
 a {
     color: hsl(340, 90%, 60%);
 }

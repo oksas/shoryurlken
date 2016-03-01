@@ -18,19 +18,20 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", function(req, res) {
-   res.render("index", {title: "sup dawg"});
+    console.log(req.headers);
+    res.render("index", {error: ""});
 });
 
 app.get("/:word", function(req, res) {
-   const word = req.params.word;
+    const word = req.params.word;
    
-   findUrl(word, function(err, entry) {
-       if (err) {
-           return res.send(`ERROR: ${err}`);
-       }
-       console.log(entry.url);
-       res.redirect(entry.url);
-   });
+    findUrl(word, function(err, entry) {
+        if (err) {
+            return res.render("index", {error: err, url: ""});
+        }
+    
+    res.redirect(entry.url);
+    });
 });
 
 app.post("/shorten", urlencodedParser, function(req, res) {
@@ -39,15 +40,15 @@ app.post("/shorten", urlencodedParser, function(req, res) {
     
     testUrl(url, function(err) {
         if (err) {
-            return res.send(`ERROR: ${err}`);
+            return res.render("index", {error: err, url: ""});
         }
         
         shortenUrl(url, function(err, entry) {
            if (err) {
-               return res.send(`ERROR: ${err}`);
+               return res.render("index", {error: err, url: ""});
            }
             
-            res.send(entry.word);
+            res.render("index", {error: "", url: `${req.headers.host}/${entry.word`})
         });
         
     });

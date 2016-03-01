@@ -1,10 +1,10 @@
 {
-  "name": "url-shortener",
+  "name": "shoryurlken",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shortens urls.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app"
   },
   "author": "John Oksasoglu",
   "repository": "https://github.com/oksas/url-shortener",
